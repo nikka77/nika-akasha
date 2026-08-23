@@ -9,3 +9,12 @@ Lancer en local : `npm install` puis `npm run dev` — servi sur `http://localho
 `lib/akasha/axes-miroir.mjs` (ex `scripts/lib/akasha-axes.mjs` du dépôt cœur) et `lib/akasha/universe-taxonomy.ts` sont désormais tenus **dans cette zone**, synchronisés mécaniquement par `lib/akasha/miroir-axes.test.ts`. C'était auparavant deux fichiers séparés par un dépôt — le cœur avait le miroir, `lib/akasha` avait la taxonomie. `nika-akasha` est maintenant la **source de vérité des deux**.
 
 Conséquence pour la vague C (réécritures + amaigrissement du cœur) : l'usine du cœur (`scripts/ops-fill-attrs.mjs`, `scripts/agent-worker.mjs` et une dizaine d'autres, recensés par la reconnaissance B0 du 23/08/2026) importe aujourd'hui `scripts/lib/akasha-axes.mjs` en LOCAL. Ce fichier devra soit rester un doublon volontairement synchronisé à la main (mauvaise option — c'est exactement le risque de dérive qui a coûté deux incidents en 08/2026), soit le cœur consommera `nika-akasha` en dépendance git (`github:nikka77/nika-akasha`) pour son usine, comme il consomme déjà `nika-liant`. À trancher par Dan avant la vague C.
+
+## Images (`/images/akasha/*`) — servies par le cœur, pas par cette zone
+
+Le code (copié du cœur) référence les images en chemin RACINE `/images/akasha/…`, mais Next sert
+`public/` SOUS le basePath : ici elles répondent à `/learn/akasha/images/akasha/…`. Le cœur réécrit
+`/images/akasha/:path*` vers cette adresse (next.config.js du dépôt NIKA). Conséquence assumée
+(23/08/2026) : sur le host interne `nika-akasha.vercel.app`, les images ne s'affichent PAS — ce host
+n'est pas public. Le `proxy.ts` qui les réécrivait ici tournait sur 100 % des requêtes de la zone ;
+supprimé.

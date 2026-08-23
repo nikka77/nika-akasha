@@ -21,9 +21,19 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-  // Le pont /images/akasha/* et /images/heroes/* (chemins RACINE construits en dur par le code
-  // copié du cœur) n'est PAS ici : Next refuse toute rewrite basePath:false vers une destination
-  // interne. Il vit dans proxy.ts, avec l'explication complète du piège — voir ce fichier.
+  // Le pont /images/akasha/* (chemins RACINE construits en dur par le code copié du cœur, alors que
+  // Next sert public/ SOUS le basePath) — 23/08/2026, deuxième version : Next refuse toute rewrite
+  // basePath:false vers une destination INTERNE, mais accepte une destination ABSOLUE… y compris
+  // vers ce même déploiement. Un saut HTTP de plus, zéro middleware : l'ancien proxy.ts tournait
+  // sur 100 % des requêtes de la zone et, pire, doublait le préfixe des requêtes déjà sous
+  // basePath (/learn/akasha/images/akasha/x → 404, mesuré en prod). Derrière le cœur, ce pont ne
+  // sert plus : le cœur réécrit /images/akasha/* directement vers /learn/akasha/images/akasha/*.
+  // /images/heroes/learn.webp (poster DomainHero) : servi par le cœur lui-même sur le domaine public.
+  async rewrites() {
+    return [
+      { source: '/images/akasha/:path*', destination: 'https://nika-akasha.vercel.app/learn/akasha/images/akasha/:path*', basePath: false },
+    ];
+  },
   async redirects() {
     return [
       { source: '/skypiea', destination: '/skypiea-lieu', permanent: true },
