@@ -1,0 +1,68 @@
+/* app/globals.css — CSS de la zone AKASHA.
+ * Les tokens (--bg, --az, --fn…) viennent de nika-liant/tokens.css, importé dans app/layout.tsx —
+ * pas dupliqués ici. Ce fichier = reset minimal + les 9 classes utilitaires PARTAGÉES site-wide
+ * que les composants AKASHA consomment (g-2/g-3/g-4/g-auto-150/g-auto-300/g-fill-150/dom-card/
+ * hero-domabar/max-sm:grid-cols-2 — mesurées par grep, recon B0 du 23/08/2026) + le bloc AKASHA
+ * lui-même (app/akasha.css, extrait tel quel de globals.css du cœur, lignes 858-1202).
+ * @import en premier : c'est une exigence de la spec CSS (tout @import doit précéder les autres
+ * règles), respectée même si le bundler Next.js est plus tolérant. */
+@import './akasha.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--td);
+  font-family: var(--fo);
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+
+/* ===== GRILLES RESPONSIVE — sous-ensemble consommé par AKASHA (copié du cœur) ===== */
+.g-2 { display: grid; grid-template-columns: repeat(2, 1fr); }
+.g-3 { display: grid; grid-template-columns: repeat(3, 1fr); }
+.g-4 { display: grid; grid-template-columns: repeat(4, 1fr); }
+.g-fill-150 { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.g-auto-150 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.g-auto-300 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+@media (max-width: 768px) {
+  .g-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .g-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .max-sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ===== CARTES DOMAINE (hover lift, accent via --dc) — consommée par AkashaMosaic/DidYouKnow… ===== */
+.dom-card { transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease; }
+.dom-card:hover { transform: translateY(-3px); border-color: var(--dc, var(--bd2)); background: var(--bg3); }
+
+/* ===== barre de bulles-domaines (scrollbar masquée) — consommée par AkashaFilters ===== */
+.hero-domabar { scrollbar-width: none; -ms-overflow-style: none; }
+.hero-domabar::-webkit-scrollbar { display: none; }
+
+/* Ken Burns (DomainHero, ScrollVideo) — copié du cœur : la seule règle de fond animée que la
+   zone consomme (app/page.tsx → <DomainHero slug="learn" />). */
+.kenburns { animation: kenburns 28s ease-in-out infinite alternate; will-change: transform; }
+@keyframes kenburns {
+  from { transform: scale(1.03); }
+  to   { transform: scale(1.12) translate(-1.5%, -1.2%); }
+}
+@media (prefers-reduced-motion: reduce) { .kenburns { animation: none; } }

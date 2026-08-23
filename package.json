@@ -1,0 +1,32 @@
+{
+  "name": "nika-akasha",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Zone AKASHA de NIKA — le registre encyclopédique (personnages, lieux, artefacts de fiction), extrait du cœur et servi sous /learn/akasha.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "node --import tsx --test lib/akasha/*.test.ts"
+  },
+  "dependencies": {
+    "next": "^16.2.6",
+    "react": "^18",
+    "react-dom": "^18",
+    "@supabase/ssr": "^0.5.1",
+    "@supabase/supabase-js": "^2.45.0",
+    "zod": "^4.4.3",
+    "nika-liant": "github:nikka77/nika-liant"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.42",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "tsx": "^4.22.4",
+    "typescript": "^5"
+  }
+}
