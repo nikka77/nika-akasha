@@ -194,9 +194,9 @@ export default async function AkashaPage({ searchParams }: { searchParams?: Prom
         {/* Destinations : records + vitrines de collection. */}
         <div className="g-auto-150" style={{ gap: 8, marginBottom: '1.4rem' }}>
           {([
-            { href: '/learn/akasha/tops', label: 'Les Records', sub: 'Classements cross-univers', tint: '#E8623A' },
-            { href: '/learn/akasha/c/fruits-du-demon', label: 'Fruits du Démon', sub: '200+ par famille', tint: '#C0455E' },
-            { href: '/learn/akasha/c/armurerie-meito', label: 'Armurerie Meito', sub: 'Sabres classés', tint: '#C9A227' },
+            { href: '/tops', label: 'Les Records', sub: 'Classements cross-univers', tint: '#E8623A' },
+            { href: '/c/fruits-du-demon', label: 'Fruits du Démon', sub: '200+ par famille', tint: '#C0455E' },
+            { href: '/c/armurerie-meito', label: 'Armurerie Meito', sub: 'Sabres classés', tint: '#C9A227' },
           ] as const).map((d) => (
             <Link key={d.href} href={d.href} className="dom-card" style={{ textDecoration: 'none', background: 'var(--bg2)', borderLeft: `3px solid ${d.tint}`, border: '1px solid var(--bd)', borderLeftColor: d.tint, borderLeftWidth: 3, borderRadius: 12, padding: '0.75rem 0.95rem', display: 'flex', flexDirection: 'column', gap: 3 }}>
               <span style={{ fontFamily: 'var(--fe)', fontStyle: 'italic', fontWeight: 800, fontSize: 13.5, color: 'var(--td)', lineHeight: 1.1 }}>{d.label}</span>

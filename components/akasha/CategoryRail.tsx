@@ -16,7 +16,7 @@ function buildHref(cat: string | null, universe: string | undefined, type: Akash
   if (cat && fam) p.set('fam', fam); // une famille n'a de sens que dans sa collection
   if (search) p.set('search', search);
   const qs = p.toString();
-  return qs ? `/learn/akasha?${qs}` : '/learn/akasha';
+  return qs ? `/?${qs}` : '/'; // <Link> : basePath rajouté par Next
 }
 
 export default function CategoryRail({

@@ -32,7 +32,7 @@ const KANJI: Record<string, string> = {
 const ORDER = Array.from({ length: 13 }, (_, i) => `${i + 1}${i === 0 ? 'ʳᵉ' : 'ᵉ'} division`);
 
 function href(universe: string, attr: string, val: string) {
-  return `/learn/akasha/u/bleach/${attr}/${encodeURIComponent(val)}`;
+  return `/u/bleach/${attr}/${encodeURIComponent(val)}`; // <Link> : basePath rajouté par Next
 }
 
 export default function BleachSeireitiMap({ axis, universe, color }: { axis: AxisView; universe: string; color: string }) {

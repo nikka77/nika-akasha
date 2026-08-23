@@ -12,7 +12,7 @@ function buildHref(universe: string | null, type: AkashaType | undefined, search
   if (type) p.set('type', type);
   if (search) p.set('search', search);
   const qs = p.toString();
-  return qs ? `/learn/akasha?${qs}` : '/learn/akasha';
+  return qs ? `/?${qs}` : '/'; // <Link> : basePath rajouté par Next
 }
 
 export default function UniverseRail({

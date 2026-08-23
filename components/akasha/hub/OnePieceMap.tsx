@@ -22,7 +22,7 @@ const ARCS = [...new Set(OP_WORLD.islands.flatMap((i) => i.arcs))].sort();
 // AVEC le préfixe /learn/akasha : consommée par un <a> DUR plus bas (pas <Link>), donc basePath
 // ne le rajoute pas tout seul — ne pas « uniformiser » avec lib/akasha/href.ts (migration en
 // zones, 23/08/2026 : ce fichier est l'exception délibérée, cf. son unique usage ligne ~290).
-const registryHref = (name: string) => `/learn/akasha?universe=${encodeURIComponent('One Piece')}&search=${encodeURIComponent(name)}`;
+const registryHref = (name: string) => `/learn/akasha?universe=${encodeURIComponent('One Piece')}&search=${encodeURIComponent(name)}`; // <a> dur : Next ne préfixe pas
 
 function Island({ isl, on, sel, matched, onSel, onHover }: {
   isl: OpwIsland; on: boolean; sel: boolean; matched: boolean; onSel: () => void; onHover: (v: boolean) => void;

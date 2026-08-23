@@ -20,7 +20,7 @@ const TITLE = (color: string) => ({ fontFamily: 'var(--fo)', fontSize: 11, fontW
 // n'a pas de hub-slug (ne devrait pas arriver puisque la signature vient d'un hub).
 function href(universe: string, attr: string, val: string) {
   const slug = universeHubSlug(universe);
-  return slug ? `/learn/akasha/u/${slug}/${attr}/${encodeURIComponent(val)}` : `/learn/akasha?${new URLSearchParams({ universe, attr, val }).toString()}`;
+  return slug ? `/u/${slug}/${attr}/${encodeURIComponent(val)}` : `/?${new URLSearchParams({ universe, attr, val }).toString()}`; // <Link> : basePath rajouté par Next
 }
 
 // ── La roue du Nen (Hunter x Hunter) — hexagone canon, médaillons aux sommets (3d) ──

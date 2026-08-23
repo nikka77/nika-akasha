@@ -12,7 +12,7 @@ const W = NARUTO_MAP.w, H = NARUTO_MAP.h;
 // plus bas — pour ces derniers, `hrefPublic` recompose le chemin complet (migration en zones,
 // 23/08/2026 — même conflit Link/<a> que components/akasha/hub/OnePieceMap.tsx).
 const villageHref = (village: string) => `/u/naruto/village/${encodeURIComponent(village)}`;
-const villageHrefPublic = (village: string) => `/learn/akasha${villageHref(village)}`;
+const villageHrefPublic = (village: string) => `/learn/akasha${villageHref(village)}`; // <a> dur : Next ne préfixe pas
 
 // Kanji + teinte des villages mineurs (chips sous la carte) — teintes alignées sur l'axe `village`
 // de lib/akasha/universe-taxonomy.ts (Oto violet, Ame bleu-gris).

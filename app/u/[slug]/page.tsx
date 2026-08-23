@@ -304,7 +304,7 @@ export default async function UniverseHubPage({ params }: Props) {
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {axis.chips.map((c) => {
                 const tint = c.tint ?? m.color;
-                const href = `/learn/akasha/u/${taxo.slug}/${axis.attr}/${encodeURIComponent(c.v)}`;
+                const href = `/u/${taxo.slug}/${axis.attr}/${encodeURIComponent(c.v)}`; // <Link> : basePath rajouté par Next
                 // Boutons-médaillon pour les axes clan/village/rang/génération Naruto (emblèmes canon + icônes Higgsfield).
                 const emblem = taxo.slug === 'naruto' && axis.attr === 'clan'
                   ? <ClanCrest slug={c.v} name={c.label} size={40} />

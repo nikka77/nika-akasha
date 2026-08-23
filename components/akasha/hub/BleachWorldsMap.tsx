@@ -45,7 +45,7 @@ export default function BleachWorldsMap({ raceAxis, divisionAxis, color }: {
   // trois ajoutées le 10/08 non (« Modified Soul » → « Âmes modifiées »). Le libellé est déjà dans
   // les chips reçues (axisValueLabel côté serveur) — rien à recâbler, juste à le lire.
   const label = (race: string) => raceAxis?.chips.find((c) => c.v === race)?.label ?? race;
-  const raceHref = (race: string) => `/learn/akasha/u/bleach/race/${encodeURIComponent(race)}`;
+  const raceHref = (race: string) => `/u/bleach/race/${encodeURIComponent(race)}`; // <Link> : basePath rajouté par Next
 
   const RaceChips = ({ races, tint }: { races: string[]; tint: string }) => (
     <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap' }}>

@@ -9,8 +9,8 @@ import { registryHref } from '@/lib/akasha/href';
 // href (relatif, pour <Link>) → chemin PUBLIC complet (pour le JSON-LD, avec SITE_URL = domaine
 // du cœur). '/' devient '/learn/akasha' ; '/?x=1' devient '/learn/akasha?x=1' (pas de '//').
 function toPublicPath(href: string): string {
-  if (href === '/') return '/learn/akasha';
-  return href.startsWith('/?') ? `/learn/akasha${href.slice(1)}` : `/learn/akasha${href}`;
+  if (href === '/') return '/learn/akasha'; // publicPath (JSON-LD absolu), pas un <Link>
+  return href.startsWith('/?') ? `/learn/akasha${href.slice(1)}` : `/learn/akasha${href}`; // publicPath (JSON-LD absolu)
 }
 
 export default function Crumbs({ universe, category, name }: { universe?: string | null; category?: string | null; name: string }) {

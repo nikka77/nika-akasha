@@ -97,7 +97,7 @@ export default async function AxisValuePage({ params, searchParams }: Props) {
   const { entries, total } = entriesResult;
   if (total === 0 && !subVal) notFound();
 
-  const basePath = `/learn/akasha/u/${taxo.slug}/${axisDef.attr}/${encodeURIComponent(val)}`;
+  const basePath = `/u/${taxo.slug}/${axisDef.attr}/${encodeURIComponent(val)}`; // <Link> : basePath rajouté par Next
   const subLabel = subAttr ? axisValueLabel(taxo.name, subAttr, subVal!) : null;
   // Valeurs sœurs (mêmes axe) → navigation latérale.
   const siblings = axisDef.values.filter((v) => v.v !== val);
