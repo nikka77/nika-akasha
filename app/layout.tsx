@@ -14,7 +14,13 @@ import OmniSearch from '@/components/akasha/OmniSearch';
 import UniverseWheel from '@/components/akasha/UniverseWheel';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  // 23/08/2026 — metadataBase porte le basePath EN PLUS du domaine du cœur : Next ne préfixe PAS
+  // les images de métadonnées par fichier (opengraph-image.tsx) avec le basePath — mesuré en prod le
+  // jour de la fusion : og:image = https://nika-murex.vercel.app/naruto-uzumaki/opengraph-image → 404
+  // sur tous les partages. Les canoniques et og:url sont écrits en absolu (SITE_URL + chemin
+  // complet) et ne dépendent pas de cette base. Le slash final compte : sans lui, un chemin
+  // absolu « /x » ignore « /learn/akasha » à la résolution.
+  metadataBase: new URL(`${SITE_URL}/learn/akasha/`),
   title: 'AKASHA — Le registre de tout ce qui existe | NIKA LEARN',
   description:
     'Akasha : le registre universel NIKA. Personnages, lieux, artefacts, métiers, statuts, pouvoirs et compétences — réels ou imaginés, reliés entre eux.',
