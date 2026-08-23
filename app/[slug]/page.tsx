@@ -18,6 +18,15 @@ import DossierSections from '@/components/akasha/DossierSections';
 import Crumbs from '@/components/akasha/Crumbs';
 
 export const revalidate = 3600; // ISR 1 h — page la plus visitée du domaine, tournait sans cache
+// ISR RÉEL (23/08/2026) : sans generateStaticParams, Next traite un segment dynamique comme
+// « rendu à la demande » (ƒ au build) et `revalidate` reste lettre morte. Une liste VIDE suffit :
+// aucune fiche n'est pré-rendue au build (8 000 fiches, ce serait un build de plusieurs minutes et
+// autant de lectures Supabase), mais chaque slug demandé est rendu UNE fois puis servi du CDN
+// pendant 1 h (dynamicParams = true, la valeur par défaut). Le client Supabase de la zone est sans
+// cookies (lib/supabase/server.ts) — c'était l'autre verrou.
+export function generateStaticParams(): { slug: string }[] {
+  return [];
+}
 
 type Props = { params: Promise<{ slug: string }> };
 
