@@ -2,9 +2,9 @@ node_modules
 .next
 out
 .vercel
-.env
-.env.local
-.env*.local
+# Toute variante .env (23/08 : un .env.vercel-check laissé par `vercel env pull` échappait au motif .env*.local)
+.env*
+!.env.example
 *.log
 .DS_Store
 *.tsbuildinfo
